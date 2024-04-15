@@ -10,9 +10,9 @@ def load_data():
     import io
 
     minio_client = Minio(
-        "192.168.1.201:9000",
-        "gr5RKSZ4tOAskujSEPjQ",
-        "A803j4zLBfHbH0NjO2DYwZuaV4PdAVnuAB0QTB9B",
+        "192.168.1.201:9090",
+        access_key="minio",
+        secret_key="minio123",
         secure=False
         )
 
@@ -55,9 +55,9 @@ def process_data():
 
 
     minio_client = Minio(
-        "192.168.1.201:9000",
-        "gr5RKSZ4tOAskujSEPjQ",
-        "A803j4zLBfHbH0NjO2DYwZuaV4PdAVnuAB0QTB9B",
+        "192.168.1.201:9090",
+        access_key="minio",
+        secret_key="minio123",
         secure=False
         )
 
@@ -91,7 +91,7 @@ def process_data():
     X_train_bytes = X_train.to_csv(index=False).encode("utf-8")
     X_test_bytes = X_test.to_csv(index=False).encode("utf-8")
     y_train_bytes = y_train.to_csv(index=False).encode("utf-8")
-    y_test_bytes = X_test.to_csv(index=False).encode("utf-8")
+    y_test_bytes = y_test.to_csv(index=False).encode("utf-8")
 
     try:
         if not minio_client.bucket_exists(bucket_name):
@@ -130,7 +130,7 @@ def process_data():
 
 
 @component(
-        base_image="devourey/scikit-sandbox:latest"
+        base_image="devourey/scikit-pipeline:latest",
         )
 def train_data():
     import pandas as pd
@@ -143,23 +143,26 @@ def train_data():
     import numpy as np
 
     minio_client = Minio(
-        "192.168.1.201:9000",
-        "gr5RKSZ4tOAskujSEPjQ",
-        "A803j4zLBfHbH0NjO2DYwZuaV4PdAVnuAB0QTB9B",
+        "192.168.1.201:9090",
+        access_key="minio",
+        secret_key="minio123",
         secure=False
         )
-
 
     bucket_name = 'housing'
     try:
         res_for_X = minio_client.get_object(bucket_name, 'X-train.csv')
         res_for_y = minio_client.get_object(bucket_name, 'y-train.csv')
+        res_for_X_test = minio_client.get_object(bucket_name, 'X-test.csv')
+        res_for_y_test = minio_client.get_object(bucket_name, 'y-test.csv')
 
     except Exception as err:
         print(err)
 
     X_train = pd.read_csv(io.BytesIO(res_for_X.data))
     y_train = pd.read_csv(io.BytesIO(res_for_y.data))
+    X_test = pd.read_csv(io.BytesIO(res_for_X_test.data))
+    y_test = pd.read_csv(io.BytesIO(res_for_y_test.data))
 
     X_train = pd.DataFrame(X_train)
     y_train = pd.DataFrame(y_train)
@@ -179,19 +182,19 @@ def train_data():
 
     # User 1
     with mlflow.start_run():
-        mlflow.log_param(user_params)
+        mlflow.log_params(user_params)
 
         lr = LinearRegression()
-        lr.fit(X_train, y_train)
-        model = lr.predict(X_test)
+        model = lr.fit(X_train, y_train)
+        y_pred = model.predict(X_test)
 
 
 
         # Compute evaluation metrics
-        mae = mean_absolute_error(y_test, model)
-        mse = mean_squared_error(y_test, model)
+        mae = mean_absolute_error(y_test, y_pred)
+        mse = mean_squared_error(y_test, y_pred)
         rmse = np.sqrt(mse)
-        r2 = r2_score(y_test, model)
+        r2 = r2_score(y_test, y_pred)
 
 
         mlflow.log_metric("mean_absolute_error", mae)
