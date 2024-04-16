@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,500&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{ 
+   margin:0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: "Roboto", sans-serif;
+}
+.home{
+  width: 100vw;
+  height: 100vh;
+}
+.content{
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background-color: black;
+}
+.back{
+  height: 600px;
+  width: 1300px;
+  object-position: center;
+  object-fit: cover;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: .3;
+}
+.agents{
+  height: 500px;
+  width: 1000px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.agents-header{
+  width: 100%;
+  height: 10%;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+}
+.agents-cover{
+  display: flex;
+  flex-wrap: wrap;
+  width: 95%;
+  height: 70%;
+  align-items:center;
+  justify-content: center;
+  overflow-y: scroll
+}
+.agent{
+  width: 270px;
+  height: 90%;
+  background-color: white;
+  margin-right: 30px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.19), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  transition: .3s;
+  position: relative;
+}
+.agent:hover{
+  transform: scaleX(1.05);
+}
+.agent-prof{
+  height: 100px;
+  width: 100px;
+  object-fit:cover;
+  object-position: center;
+  border-radius: 50%;
+}
+.hire-button{
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  cursor:pointer;
+  transition: .3s;
+}
+.hire-button:hover{
+  background-color: black;
+  color: white;
+}
+.tag-intern{
+  background-color: green;
+  padding: 5px 5px;
+  border-radius: 5px;
+  font-size: 10px;
+  color: white;
+  position: absolute;
+  top:10px;
+  right:10px;
+}
+.agent-detail-cover{
+  background-color: rgba(0,0,0,.9);
+  position: absolute;
+  inset: 0;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+.agent-detail{
+  width: 800px;
+  height: 500px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.19), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  position: relative;
+}
+.agent-detail-left{
+  width: 45%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.agent-detail-right{
+  width: 45%;
+  height: 80%;
+  border: 2px solid black;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  overflow:hidden;
+  align-items: center
+}
+.close{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height:30px;
+  width: 30px;
+  border: 1px solid black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor:pointer;
+  transition: .3s;
+}
+.close:hover{
+  background-color: black;
+  color: white;
+}
+.agent-prof-detail{
+  height: 100px;
+  width: 100px;
+  object-fit:cover;
+  object-position: center;
+  border-radius: 50%;
+}
+.metrics{
+  width: 100%;
+  height: 30%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column
+
+}
+.dev{
+ width: 100%;
+  height: 30%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column
+}
+.dev-details{
+  font-size: 12px;
+}
+.agent-modules{
+  width: 320px;
+  height: 80%;
+  display: flex;
+  overflow: hidden;
+}
+.module-predict{
+  width: 320px;
+  height:100%;
+  background-color:red;
+}
+.module-comment{
+  width: 320px;
+  height: 100%;
+  background-color: green;
+}
+.agents-modules-swicth{
+  width: 100%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly
+}
+.modules-slider{
+  display: flex;
+}
+.switch-btn{
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  cursor:pointer;
+  color: black;
+  background-color: white;
+  transition: all .3s;
+}
+.switch-btn:hover{
+  background-color: black;
+  color: white;
+}

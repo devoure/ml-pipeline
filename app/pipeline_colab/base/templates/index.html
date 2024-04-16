@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ML</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+</head>
+<body class="home">
+	{% block content %}
+	{% endblock %}
+  <script>
+    let buttons = document.querySelectorAll('.hire-button')
+    let closeBtn = document.getElementById('close')
+    let detail = document.getElementById('agent-detail-cover')
+
+    let predictBtn = document.getElementById('predict')
+    let commentBtn = document.getElementById('comment')
+    let slider = document.getElementById('slider')
+
+    buttons.forEach(function(button){
+      button.addEventListener("click", function(e){
+        let buttonClicked = e.target
+        let value = buttonClicked.getAttribute('data-value')
+        detail.style.display = 'flex'
+      })
+    })
+
+    closeBtn.addEventListener("click", function(e){
+      detail.style.display = "none"
+    })
+
+    predictBtn.addEventListener("click", function(){
+      slider.style.transform = 'translateX(0px)'
+    })
+
+    commentBtn.addEventListener("click", function(){
+      console.log('swict')
+      slider.style.transform = 'translateX(-300px)'
+    })
+
+  </script>
+</body>
+</html>

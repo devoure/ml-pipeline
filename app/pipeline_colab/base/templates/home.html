@@ -1,0 +1,86 @@
+{% extends 'index.html' %}
+
+{% load static %}
+{% block title %} COLAB {% endblock %}
+{% block content %}
+<div class="content">
+  <img src="{% static 'img/back.jpg'%}" class="back"/>
+
+  <div class="agents">
+    <div class="agents-header">
+      <h1>Our Agents.</h1>
+    </div>
+    <hr style="width:80%; border:1px solid white;"/>
+
+    <div class="agents-cover">
+      {% for x in number %}
+      <div class="agent">
+        <span class="tag-intern">intern</span>
+        <img src="{% static 'img/agent1.png'%}" class="agent-prof" />
+        <div>
+          <h3>Name of Model</h3>
+        </div>
+        <div>
+          <span class="hire-button" data-value="2">Hire</span>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+
+  <div class="agent-detail-cover" id="agent-detail-cover">
+    <div class="agent-detail">
+      <span class="close" id="close">X</span>
+      <div class="agent-detail-left">
+        <img src="{% static 'img/agent1.png' %}" class="agent-prof-detail" />
+        <div class="dev">
+          <div class="dev-header">
+            <h3 style="border-bottom:1px solid black; display:inline-block">Model Details.</h3>
+          </div>
+          <div class="dev-details">
+            <ul>
+              <li><span style="font-weight: 700">Run Name: </span>John</li>
+              <li><span style="font-weight: 700">Dev Name: </span>John Doe</li>
+              <li><span style="font-weight: 700">Algorithm Used: </span> Logistic Regression</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="metrics">
+          <div class="dev-header">
+            <h3 style="border-bottom:1px solid black; display:inline-block">Metrics.</h3>
+          </div>
+          <div class="dev-details">
+            <ul>
+              <li><span style="font-weight: 700">Mean Absolute Error: </span>3</li>
+              <li><span style="font-weight: 700">Mean Squared Error: </span>20%</li>
+              <li><span style="font-weight: 700">Accuracy: </span> 30%</li>
+              <li><span style="font-weight: 700">Overfitting: </span> 30</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="agent-detail-right">
+        <div class="agent-modules">
+          <div class="modules-slider" id="slider">
+            <div class="module-predict">
+            </div>
+
+            <div class="module-comment">
+            </div>
+          </div>
+        </div>
+
+        <div class="agents-modules-swicth">
+          <span id="predict" class="switch-btn">Test</span>
+          <span id="comment" class="switch-btn">Comment<span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
