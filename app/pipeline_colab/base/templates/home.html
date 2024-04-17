@@ -67,9 +67,70 @@
         <div class="agent-modules">
           <div class="modules-slider" id="slider">
             <div class="module-predict">
+              <div class="predict-inputs">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-land-plot"><path d="m12 8 6-3-6-3v10"/><path d="m8 11.99-5.5 3.14a1 1 0 0 0 0 1.74l8.5 4.86a2 2 0 0 0 2 0l8.5-4.86a1 1 0 0 0 0-1.74L16 12"/><path d="m6.49 12.85 11.02 6.3"/><path d="M17.51 12.85 6.5 19.15"/></svg>
+
+                <h4 style="width:100px">Area</h4>
+                <input type="text" placeholder="Enter area of house"/>
+              </div>
+
+              <div class="predict-inputs">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bed-double"><path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/><path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><path d="M12 4v6"/><path d="M2 18h20"/></svg>
+                <h4 style="width:100px">Bedrooms</h4>
+                <input type="text" placeholder="Enter number of bedrooms" />
+              </div>
+
+              <div class="predict-inputs">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brick-wall"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M12 9v6"/><path d="M16 15v6"/><path d="M16 3v6"/><path d="M3 15h18"/><path d="M3 9h18"/><path d="M8 15v6"/><path d="M8 3v6"/></svg>
+                <h4 style="width:100px">Stories</h4>
+                <input type="text" placeholder="Enter number of stories" />
+              </div>
+
+              <div class="predict-inputs">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-armchair"><path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3"/><path d="M3 16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H7v-2a2 2 0 0 0-4 0Z"/><path d="M5 18v2"/><path d="M19 18v2"/></svg>
+                <h4 style="width:150px">Furnishing Status</h4>
+                <div class="predict-selects">
+                  <select>
+                    <option value="0">Un-Furnished</option>
+                    <option value="100">Furnished</option>
+                    <option value="50">Semi-Furnished</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="predict-inputs">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bus-front"><path d="M4 6 2 7"/><path d="M10 6h4"/><path d="m22 7-2-1"/><rect width="16" height="16" x="4" y="3" rx="2"/><path d="M4 11h16"/><path d="M8 15h.01"/><path d="M16 15h.01"/><path d="M6 19v2"/><path d="M18 21v-2"/></svg>
+                <h4 style="width:150px">Main Road Access</h4>
+                <div class="predict-selects">
+                  <select>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                  </select>
+                </div>
+
+              </div>
+
+              <a href="#" class="predict-btn">Predict</a>
+
             </div>
 
             <div class="module-comment">
+              <div class="comments">
+                <div class="comment">
+                  <span style="font-weight: 700; font-size:12px; margin-right:5px; font-style:italic">@3233</span>
+                  <p style="font-weight:300; font-size: 12px; ">djddjjjjjjjjjjjjjadbcdjcbdjdbcdjcbdjcbdcjdbcdjbdjcbdjcbdjcbdjcbdjdbjcdbjdbcjdcbdjcdb djcjdcbdbdjdcdbcd cdhcbajcdjbcdjb</p>
+                </div>
+              </div>
+
+              <div class="comment-add">
+                <form>
+                  <textarea>Add Comment here..
+                  </textarea>
+
+                  <input type="submit" value="Add" />
+                </form>
+              </div>
+
             </div>
           </div>
         </div>
