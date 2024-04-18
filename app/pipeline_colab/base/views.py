@@ -1,5 +1,11 @@
 from django.shortcuts import render
+import mlflow
 
 # Create your views here.
 def home(request):
-    return render(request, 'home.html', {"number":[1,2,3,4,5,6]})
+    mlflow.set_tracking_uri('http://192.168.1.201:5000')
+
+    experiment_id = 'Housing'
+    runs = mlflow.search_runs(experiment_ids=experiment_id, filter_string="status = 'FINISHED'")
+
+    return render(request, 'home.html', {"runs":runs.values.tolist()})
