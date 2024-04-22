@@ -13,15 +13,22 @@
     <hr style="width:80%; border:1px solid white;"/>
 
     <div class="agents-cover">
-      {% for run in runs %}
+      {% for agent in agents %}
       <div class="agent">
-        <span class="tag-intern"></span>
-        <img src="{% static 'img/agent1.png'%}" class="agent-prof" />
-        <div>c
-          <h3>Name of Model</h3>
+        {% if agent.accuracy < 50 %}
+          <span class="tag-intern">intern</span>
+          {% elif agent.accuracy > 50 and agent.accuracy < 70 %}
+          <span class="tag-intern">junior</span>
+          {% elif agent.accuracy > 70 %}
+          <span class="tag-intern">senior</span>
+        {% endif %}
+
+        <img src="{% static agent.pic %}" class="agent-prof" />
+        <div>
+          <h3>{{ agent.run_name }}</h3>
         </div>
         <div>
-          <span class="hire-button" data-value="2">Hire</span>
+          <span class="hire-button" data-value="{{ agent.index }}">Hire</span>
         </div>
       </div>
       {% endfor %}
@@ -33,16 +40,16 @@
     <div class="agent-detail">
       <span class="close" id="close">X</span>
       <div class="agent-detail-left">
-        <img src="{% static 'img/agent1.png' %}" class="agent-prof-detail" />
+        <img src="{% static 'img/agent1.png' %}" class="agent-prof-detail" id="detail-prof-pic" />
         <div class="dev">
           <div class="dev-header">
             <h3 style="border-bottom:1px solid black; display:inline-block">Model Details.</h3>
           </div>
           <div class="dev-details">
             <ul>
-              <li><span style="font-weight: 700">Run Name: </span>John</li>
-              <li><span style="font-weight: 700">Dev Name: </span>John Doe</li>
-              <li><span style="font-weight: 700">Algorithm Used: </span> Logistic Regression</li>
+              <li><span style="font-weight: 700">Run Name: </span><span id="run-name">John</span></li>
+              <li><span style="font-weight: 700">Dev Name: </span><span id="dev-name">John Doe</span></li>
+              <li><span style="font-weight: 700">Algorithm Used: </span> <span id="algo">Logistic Regression</span></li>
             </ul>
           </div>
         </div>
@@ -53,10 +60,10 @@
           </div>
           <div class="dev-details">
             <ul>
-              <li><span style="font-weight: 700">Mean Absolute Error: </span>3</li>
-              <li><span style="font-weight: 700">Mean Squared Error: </span>20%</li>
-              <li><span style="font-weight: 700">Accuracy: </span> 30%</li>
-              <li><span style="font-weight: 700">Overfitting: </span> 30</li>
+              <li><span style="font-weight: 700">Mean Absolute Error: </span><span id="mae">3</span></li>
+              <li><span style="font-weight: 700">Mean Squared Error: </span><span id="mse">20%</span></li>
+              <li><span style="font-weight: 700">Accuracy: </span><span id="acc">30%</span></li>
+              <li><span style="font-weight: 700">Overfitting: </span><span id="ov-f">30</span></li>
             </ul>
           </div>
         </div>
@@ -144,4 +151,41 @@
   </div>
 
 </div>
+{{ agents|json_script:"agents-data" }}
+<script>
+  const buttons = document.querySelectorAll('.hire-button')
+  const detail = document.getElementById('agent-detail-cover')
+  const data = document.getElementById('agents-data')
+  const runName = document.getElementById('run-name')
+  const devName = document.getElementById('dev-name')
+  const algo = document.getElementById('algo')
+  const mae = document.getElementById('mae')
+  const mse = document.getElementById('mse')
+  const acc = document.getElementById('acc')
+  const ovF = document.getElementById('ov-f')
+  const image = document.getElementById('detail-prof-pic')
+
+  buttons.forEach(function(button){
+    button.addEventListener("click", function(e){
+      let buttonClicked = e.target
+      let index = buttonClicked.getAttribute('data-value')
+      let agents = JSON.parse(data.textContent)
+      runName.innerText = agents[parseInt(index)].run_name
+      devName.innerText = agents[parseInt(index)].dev
+      algo.innerText = agents[parseInt(index)].algo
+      mae.innerText = agents[parseInt(index)].mae
+      mse.innerText = agents[parseInt(index)].rmse
+      acc.innerText = agents[parseInt(index)].acc
+      ovF.innerText = agents[parseInt(index)].overfitting
+
+      let pic = agents[parseInt(index)].pic
+
+      image.src = `http://127.0.0.1:8000/static/${pic}`
+
+     
+      detail.style.display = 'flex'
+    })
+  })
+
+</script>
 {% endblock %}

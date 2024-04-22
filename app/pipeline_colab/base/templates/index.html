@@ -10,21 +10,13 @@
 	{% block content %}
 	{% endblock %}
   <script>
-    let buttons = document.querySelectorAll('.hire-button')
     let closeBtn = document.getElementById('close')
-    let detail = document.getElementById('agent-detail-cover')
+
 
     let predictBtn = document.getElementById('predict')
     let commentBtn = document.getElementById('comment')
     let slider = document.getElementById('slider')
 
-    buttons.forEach(function(button){
-      button.addEventListener("click", function(e){
-        let buttonClicked = e.target
-        let value = buttonClicked.getAttribute('data-value')
-        detail.style.display = 'flex'
-      })
-    })
 
     closeBtn.addEventListener("click", function(e){
       detail.style.display = "none"
