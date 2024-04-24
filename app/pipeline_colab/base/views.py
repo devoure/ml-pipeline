@@ -7,3 +7,6 @@ def home(request):
     context = get_data()
 
     return render(request, 'home.html', context)
+
+def predict(request):
+    pass
